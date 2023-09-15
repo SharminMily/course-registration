@@ -8,7 +8,13 @@ const Home = () => {
 
     const [allCourse, setAllCourse] = useState([]);
 
-    const [selectedCourse, setSelectedCourse] = useState([])
+    const [selectedCourse, setSelectedCourse] = useState([]);
+
+    const [remaining, setRemaining] = useState(0);
+
+    const [totalCredit, setTotalCredit] = useState(0)
+
+    const [totalPrice, setTotalPrice] = useState(0)
 
 
     useEffect(() => {
@@ -18,8 +24,42 @@ const Home = () => {
     }, [])
 
     const handleSelected = (cours) => {
-        const newSelectedCourse = [...selectedCourse, cours]
-        setSelectedCourse(newSelectedCourse)
+
+        const isExist =selectedCourse.find((item)=> item.id == cours.id)
+
+        let count = cours.credit;       
+
+        if(isExist){
+            return alert('already booked');
+        }
+        else{
+            selectedCourse.forEach(item => {
+                count = count + item.credit
+            })
+            // console.log(count)
+            const newSelectedCourse = [...selectedCourse, cours]
+            setSelectedCourse(newSelectedCourse)           
+               
+
+            if(count < 20){
+                setTotalCredit(count);
+            //   return  alert('credit over')                
+                
+            }
+            else{                
+                const totalRemaining = count -20;
+                setRemaining(totalRemaining)                
+            }
+
+            
+        }
+
+        let price = cours.price;
+        const newPeice = totalPrice + price
+        setTotalPrice(newPeice)
+
+
+      
     }
     console.log(selectedCourse)
 
@@ -64,7 +104,11 @@ const Home = () => {
             </div>
 
             <div className="w-1/4">
-                <Cart selectedCourse={selectedCourse}></Cart>
+                <Cart selectedCourse={selectedCourse}
+                remaining={remaining}
+                totalCredit={totalCredit}
+                totalPrice={totalPrice}
+                ></Cart>
             </div>
         </div>
     );
