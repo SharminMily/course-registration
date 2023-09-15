@@ -4,11 +4,12 @@ import { useEffect } from "react";
 // import { PiCurrencyDollarBold } from 'react-icons/fa';
 import {FaBookmark } from 'react-icons/fa';
 
-
-
 const Home = () => {
 
-    const [allCourse, setAllCourse] = useState([])
+    const [allCourse, setAllCourse] = useState([]);
+
+    const [selectedCourse, setSelectedCourse] = useState([])
+
 
     useEffect(() => {
         fetch('./data.json')
@@ -16,16 +17,23 @@ const Home = () => {
             .then(data => setAllCourse(data))
     }, [])
 
+    const handleSelected = (cours) => {
+        const newSelectedCourse = [...selectedCourse, cours]
+        setSelectedCourse(newSelectedCourse)
+    }
+    console.log(selectedCourse)
+
     return (
-        <div className="flex justify-between max-w-screen-xl mx-auto my-10 py-5 px-8 md:px-8 lg:px-8">
-            <div className="w-3/4 grid grid-cols-3 gap-4 p-4">
+        <div className="flex justify-between gap-2 max-w-screen-xl mx-auto my-10 py-5 px-8 md:px-8 lg:px-0">
+            <div className="w-3/4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-4">
                 {
                     allCourse.map(cours => (
                         // eslint-disable-next-line react/jsx-key
-                        <div key={cours.id} className="card bg-base-100 shadow-xl">
-                            <figure><img className="w-full h-60" src={cours.image} alt="Shoes" /></figure>
-                            <div className="card-body p-0 my-4 mx-4">
-                                <h2 className="card-title text-xl py-2">{cours.title}</h2>
+                        <div key={cours.id} className="card bg-base-100 shadow-xl p-4">
+                            {/* <figure><img className="w-full h-60" src={cours.image} alt="" /></figure> */}
+                            <figure><img className="w-full h-60" src={cours.image} alt="" /></figure>
+                            <div className="card-body p-0 ">
+                                <h2 className="card-title text-xl pt-2">{cours.title}</h2>
                                 <p className="text-gray-600 text-base">{cours.description}</p>
 
                                 <div className="flex justify-between  m-0">                                     
@@ -45,7 +53,7 @@ const Home = () => {
                                     </div>
                                 </div>
                                 <div className="">
-                                    <button className="mt-2 p-2  rounded-lg bg-blue-600 text-lg text-white w-full">Select</button>
+                                    <button onClick={() => handleSelected(cours)} className="mt-2 p-2 font-semibold hover:bg-sky-700 rounded-lg bg-blue-600 text-lg text-white w-full">Select</button>
                                 </div>
                             </div>
                         </div>
@@ -55,9 +63,8 @@ const Home = () => {
 
             </div>
 
-
             <div className="w-1/4">
-                <Cart></Cart>
+                <Cart selectedCourse={selectedCourse}></Cart>
             </div>
         </div>
     );

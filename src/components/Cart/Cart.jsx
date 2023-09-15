@@ -1,16 +1,26 @@
-const Cart = () => {
+// eslint-disable-next-line react/prop-types
+const Cart = ({selectedCourse}) => {
+    console.log(selectedCourse)
     return (
-        <div className="bg-gray-50 h-72 rounded-lg p-4 text-start">
-            <h3 className="text-xl text-blue-700 font-bold">Credit Hour Remaining 7 hr</h3>
+        <div className="">
+            <div className="bg-gray-50 rounded-lg p-4 mt-4 text-start">
+            <h3 className="text-xl text-blue-700 font-bold py-2">Credit Hour Remaining 7 hr</h3>
             <hr />
-            <h2 className="font-bold text-lg py-2">Course Name</h2>
-            1 Introduction to c programming
+            <h2 className="font-semibold text-2xl py-4">Course Name: {selectedCourse.length}</h2>
+            {
+              // eslint-disable-next-line react/prop-types
+              selectedCourse.map((cours)=>(
+                <li className="text-gray-600 mb-2" type="1" key={cours.id}> {cours.title}</li>
+              ))
+            }
+            {/* 1 Introduction to c programming
             2 Introduction to C++ for DSA
-            3 Software Engineering
+            3 Software Engineering */}
             <hr />
-            <h4 className="text-lg py-2">  Total Credit Hour : 13</h4>
+            <h4 className="text-lg font-semibold py-4">  Total Credit Hour : 13</h4>
             <hr />
-            <h2 className="text-lg font-medium pt-2">Total Price : 48000 USD</h2>
+            <h2 className="text-lg font-bold pt-4">Total Price : 48000 USD</h2>
+        </div>
         </div>
     );
 };
