@@ -4,13 +4,16 @@ import { useEffect } from "react";
 // import { PiCurrencyDollarBold } from 'react-icons/fa';
 import {FaBookmark } from 'react-icons/fa';
 
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 const Home = () => {
 
     const [allCourse, setAllCourse] = useState([]);
 
     const [selectedCourse, setSelectedCourse] = useState([]);
 
-    const [remaining, setRemaining] = useState(0);
+    const [remaining, setRemaining] = useState(20);
 
     const [totalCredit, setTotalCredit] = useState(0)
 
@@ -27,41 +30,36 @@ const Home = () => {
 
         const isExist =selectedCourse.find((item)=> item.id == cours.id)
 
-        let count = cours.credit;       
-
-        if(isExist){
-            return alert('already booked');
+        let count = cours.credit; 
+        
+        if(isExist ){
+            return toast('already selected');
         }
         else{
             selectedCourse.forEach(item => {
                 count = count + item.credit
             })
-            // console.log(count)
-            const newSelectedCourse = [...selectedCourse, cours]
-            setSelectedCourse(newSelectedCourse)           
-               
-
-            if(count < 20){
-                setTotalCredit(count);
-            //   return  alert('credit over')                
-                
-            }
-            else{                
-                const totalRemaining = count -20;
-                setRemaining(totalRemaining)                
-            }
-
-            
+                     
         }
+        if(count < 20){
+            setTotalCredit(count);               
+              const newSelectedCourse = [...selectedCourse, cours]  
+              const totalRemaining = 20 - count;
+              console.log(totalRemaining)
+  
+              setRemaining(totalRemaining)               
+  
+              setSelectedCourse(newSelectedCourse)  
+        }
+        else{
+            toast('Your credit over')
+        }                
 
         let price = cours.price;
-        const newPeice = totalPrice + price
-        setTotalPrice(newPeice)
-
-
-      
+        const newPrice = totalPrice + price
+        setTotalPrice(newPrice)      
     }
-    console.log(selectedCourse)
+    
 
     return (
         <div className="flex justify-between gap-2 max-w-screen-xl mx-auto my-10 py-5 px-8 md:px-8 lg:px-0">
@@ -94,6 +92,7 @@ const Home = () => {
                                 </div>
                                 <div className="">
                                     <button onClick={() => handleSelected(cours)} className="mt-2 p-2 font-semibold hover:bg-sky-700 rounded-lg bg-blue-600 text-lg text-white w-full">Select</button>
+                                    <ToastContainer />
                                 </div>
                             </div>
                         </div>
