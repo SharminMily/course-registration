@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import {FaBookmark } from 'react-icons/fa';
 
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
 
@@ -38,14 +38,13 @@ const Home = () => {
         else{
             selectedCourse.forEach(item => {
                 count = count + item.credit
-            })
-                     
+            })                     
         }
         if(count < 20){
             setTotalCredit(count);               
               const newSelectedCourse = [...selectedCourse, cours]  
               const totalRemaining = 20 - count;
-              console.log(totalRemaining)
+            //   console.log(totalRemaining)
   
               setRemaining(totalRemaining)               
   
@@ -53,14 +52,12 @@ const Home = () => {
         }
         else{
             toast('Your credit over')
-        }         
-  
+        }   
 
         let price = cours.price;
         const newPrice = totalPrice + price
         setTotalPrice(newPrice)      
-    }
-    
+    }    
 
     return (
         <div className="flex justify-between md:gap-2 max-w-screen-xl mx-auto my-10 py-5 md:px-8 lg:px-0">
@@ -86,8 +83,8 @@ const Home = () => {
                                     <div className="flex ">                                      
                                         <p className="flex justify-center p-[5px]"><FaBookmark /></p>
                                         <p>Credit: {cours.credit}hr</p>
-
                                     </div>
+
                                 </div>
                                 <div className="">
                                     <button onClick={() => handleSelected(cours)} className="mt-2 p-2 font-semibold hover:bg-sky-700 rounded-lg bg-blue-600 text-lg text-white w-full">Select</button>
@@ -108,6 +105,7 @@ const Home = () => {
                 totalPrice={totalPrice}
                 ></Cart>
             </div>
+
         </div>
     );
 };
