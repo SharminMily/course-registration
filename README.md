@@ -1,8 +1,10 @@
-# React + Vite
+# Add at least 3 Project features.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. I'm using HTML, tailwind CSS, JavaScript react, react-icon, react-tostify.
+2. Using tools - vs code, GitHub repository.
+3. It's single page Application. It's very fast and easy process.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Discuss how you managed the state in your assignment project.
+
+It's my assignment project.First used React's useState and useEffect hooks. I maintained various state variables to track application data and user interactions. These included data fetched from APIs, user inputs. Additionally, I employed the useEffect hook to fetch and update data when the component mounted or when specific dependencies changed. Overall, I using React's functionality.
