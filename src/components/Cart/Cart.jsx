@@ -5,10 +5,10 @@ const Cart = ({selectedCourse, remaining, totalCredit, totalPrice}) => {
     return (
         <div className="">
             <div className="bg-gray-50 rounded-lg p-4 mt-4 text-start">
-            <h3 className="text-xl text-blue-700 font-bold py-2">Credit Hours Remaining {remaining} hr</h3>
+            <h3 className="lg:text-xl text-blue-700 font-bold py-2">Credit Hours Remaining {remaining} hr</h3>
             
             <hr />
-            <h2 className="font-semibold text-2xl py-4">Course Name: {selectedCourse.length}</h2>
+            <h2 className="font-semibold md:text-2xl py-4">Course Name: {selectedCourse.length}</h2>
             {
               // eslint-disable-next-line react/prop-types
               selectedCourse.map((cours)=>(
@@ -19,9 +19,9 @@ const Cart = ({selectedCourse, remaining, totalCredit, totalPrice}) => {
             2 Introduction to C++ for DSA
             3 Software Engineering */}
             <hr />
-            <h4 className="text-lg font-semibold py-4">  Total Credit Hours : {totalCredit}</h4>
+            <h4 className="md:text-lg font-semibold py-4">  Total Credit Hours : {totalCredit}</h4>
             <hr />
-            <h2 className="text-lg font-bold pt-4">Total Price : {totalPrice} USD</h2>
+            <h2 className="md:text-lg font-bold pt-4">Total Price : {totalPrice} USD</h2>
         </div>
         </div>
     );

@@ -53,7 +53,8 @@ const Home = () => {
         }
         else{
             toast('Your credit over')
-        }                
+        }         
+  
 
         let price = cours.price;
         const newPrice = totalPrice + price
@@ -62,19 +63,18 @@ const Home = () => {
     
 
     return (
-        <div className="flex justify-between gap-2 max-w-screen-xl mx-auto my-10 py-5 px-8 md:px-8 lg:px-0">
-            <div className="w-3/4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-4">
+        <div className="flex justify-between md:gap-2 max-w-screen-xl mx-auto my-10 py-5 md:px-8 lg:px-0">
+            <div className="md:w-3/4 grid mb-32 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-4">
                 {
                     allCourse.map(cours => (
                         // eslint-disable-next-line react/jsx-key
-                        <div key={cours.id} className="card bg-base-100 shadow-xl p-4">
-                            {/* <figure><img className="w-full h-60" src={cours.image} alt="" /></figure> */}
+                        <div key={cours.id} className="card bg-base-100 shadow-xl mb-8 p-4">                           
                             <figure><img className="w-full h-60" src={cours.image} alt="" /></figure>
                             <div className="card-body p-0 ">
-                                <h2 className="card-title text-xl pt-2">{cours.title}</h2>
+                                <h2 className="card-title md:text-xl text-base pt-2">{cours.title}</h2>
                                 <p className="text-gray-600 text-base">{cours.description}</p>
 
-                                <div className="flex justify-between  m-0">                                     
+                                <div className="md:flex md:justify-between flex-wrap  m-0">                                     
                                     <div className="flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <path d="M12 1V23" stroke="#1C1B1B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -83,8 +83,7 @@ const Home = () => {
                                             <p>Price: {cours.price}</p>
                                     </div>
                                    
-                                    <div className="flex justify-center align-middle text-center">
-                                        {/* BsBookmarks */}
+                                    <div className="flex ">                                      
                                         <p className="flex justify-center p-[5px]"><FaBookmark /></p>
                                         <p>Credit: {cours.credit}hr</p>
 
@@ -102,7 +101,7 @@ const Home = () => {
 
             </div>
 
-            <div className="w-1/4">
+            <div className="md:w-1/4">
                 <Cart selectedCourse={selectedCourse}
                 remaining={remaining}
                 totalCredit={totalCredit}
